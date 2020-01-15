@@ -77,6 +77,7 @@
   </div>
 </template>
 <script>
+  import api,{login} from '../api/api';
   export default {
     data() {
       //密码格式
@@ -154,16 +155,20 @@
     methods: {
       submit: function () {
         if(this.Loginform.username == ''||this.Loginform.password == ''){
-          this.$alert('请填写账号和密码！', '提示', {
-            dangerouslyUseHTMLString: true
-          });
+          this.$alert('请填写账号和密码！', '提示');
         }else {
-          let para = {
-            "userAccount": this.Loginform.username,
-            "userPass": this.Loginform.password,};
-          
+          this.logining = true ;
+          login({
+              userName: this.Loginform.username,
+              passsWord: this.Loginform.password,
 
-
+          })
+            .then( (res)=>{
+              console.log(res.re.code);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         }
       },
       //注册dialog

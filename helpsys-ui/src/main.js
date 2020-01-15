@@ -3,11 +3,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.use(ElementUI)
-
+import  axios from 'axios'
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = 'https://localhost:80/helpsys';			//设置默认请求地址
 Vue.config.productionTip = false
-
+Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
